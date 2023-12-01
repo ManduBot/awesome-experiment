@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    </html>
+        <body>
+            <div style="float:left; width: 650px; position:relative;"><img id="비커" src="images/비커.png" alt="비커" style="width: 100%;"></div>
+            <div class="atom" style="position:absolute; left: 150px; top: 40px;">
+                <p class="water">H+</p>
+                <p class="water">H+</p>
+                <p>Cl-</p>
+                <p>Cl-</p>
+            </div>
+            <div class="naoh" style="position:absolute; left: 280px; top: 40px;">
+                <p class="yeom"></p>
+                <p class="yeomgi"></p>
+            </div>
+            <div style="width:100%">
+                <button onclick="spill()">수산화 나트륨 수용액(1ml) 넣기</button>
+                <p>*수산화 나트륨 수용액 1ml = NaOH 1개</p>
+                <br><strong>지시약</strong></br>
+                <input type="checkbox" class="checkbox" onclick="check(this)" checked="true" name="none"/>none
+                <input type="checkbox" class="checkbox" onclick="check(this)" name="btb"/>btb
+                <input type="checkbox" class="checkbox" onclick="check(this)" name="메틸오렌지"/>메틸오렌지
+                <input type="checkbox" class="checkbox" onclick="check(this)" name="페놀프탈레인"/>페놀프탈레인
+            </div>
+        </body>
+    <script>
+        let spillcount = 0
+        let beaktype = 'none'
+        function spill(){
+            let water = document.getElementsByClassName('water')
+            let yeom = document.getElementsByClassName('yeom')
+            let yeomgi = document.getElementsByClassName('yeomgi')
+            let checkbox = document.getElementsByClassName('checkbox')
+            if (spillcount < 2){
+                water[spillcount].innerHTML="H2O"
+            }else{
+                yeomgi[0].innerHTML="OH-X"+(spillcount-1)
+            }
+            spillcount++
+            yeom[0].innerHTML="Na+X"+spillcount
+            changebeak()
+        }
+        function check(element){
+            let checkboxes = document.getElementsByClassName('checkbox')
+            for(var cb of checkboxes) cb.checked = false;
+            element.checked = true;
+            beaktype=element.name
+            changebeak()
+        }
+        function changebeak(){
+            let beaker = document.getElementById('비커')
+            if (beaktype=="none"){
+                beaker.src="images/비커.png"
+            } else
+            if (spillcount < 2){
+                beaker.src="images/비커"+beaktype+"산.png"
+            } else
+            if (spillcount == 2){
+                beaker.src="images/비커"+beaktype+"중.png"
+            } else{
+                beaker.src="images/비커"+beaktype+"염.png"
+            }
+        }
+    </script>
+</html>

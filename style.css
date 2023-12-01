@@ -1,0 +1,10 @@
+body {
+    width: 100vw;
+    overflow: hidden;
+}
+div.atom p {
+    font-size: 50px;
+}
+div.naoh p{
+    font-size: 50px;
+}
